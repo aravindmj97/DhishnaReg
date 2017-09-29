@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Dhishna Event Check-In</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="exit">Logout</string>
+</resources>

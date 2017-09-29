@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_light"
+    tools:context="com.iamaravind.dhishnareg.LoginActivity">
+
+
+    <EditText
+        android:id="@+id/unamee"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textColorHint="@color/colorTint"
+        android:hint="UserName"
+        android:elevation="10dp"
+        android:layout_marginBottom="23dp"
+        android:layout_above="@+id/password"
+        android:textColor="@color/textColor"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="140dp"
+        android:background="@drawable/button_custom"
+        android:backgroundTint="@android:color/holo_green_light"
+        android:elevation="20dp"
+        android:onClick="onLogin"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:text="Login"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:textColorHint="@color/colorTint"
+        android:elevation="10dp"
+        android:inputType="textPassword"
+        android:textColor="@color/textColor"
+        android:hint="Password"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/unamee" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="300sp"
+        android:layout_height="300sp"
+        android:src="@mipmap/logo"
+        android:layout_above="@+id/unamee"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>
