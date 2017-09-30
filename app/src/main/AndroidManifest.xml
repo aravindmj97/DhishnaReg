@@ -26,7 +26,8 @@
             android:label="@string/app_name" />
         <activity android:name=".CheckinsuccessActivity" />
         <activity android:name=".CheckinfailedActivity" />
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".AdminActivity"></activity>
     </application>
 
 </manifest>
