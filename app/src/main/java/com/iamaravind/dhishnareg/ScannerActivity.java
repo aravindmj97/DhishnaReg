@@ -3,6 +3,7 @@ package com.iamaravind.dhishnareg;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -18,13 +19,16 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class ScannerActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler{
     Toolbar toolbar;
-    TextView pass;
+    TextView pass,t;
     private ZXingScannerView zXingScannerView;
     String eidresult;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scanner);
+        t = (TextView)findViewById(R.id.eid);
+        Typeface customType = Typeface.createFromAsset(getAssets(),"fonts/BungeeShade-Regular.ttf");
+        t.setTypeface(customType);
         Bundle bundle = getIntent().getExtras();
         eidresult = bundle.getString("eidd");
         pass = (TextView)findViewById(R.id.eid);

@@ -31,11 +31,13 @@
         android:id="@+id/eid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="124dp"
-        android:text="TextView"
-        android:textSize="32sp"
-        android:elevation="5dp"
         android:layout_below="@+id/tolbar"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="124dp"
+        android:elevation="5dp"
+        android:fontFamily="Bungee Shade"
+        android:text="TextView"
+        android:textColor="@android:color/black"
+        android:textSize="38sp" />
 
 </RelativeLayout>
