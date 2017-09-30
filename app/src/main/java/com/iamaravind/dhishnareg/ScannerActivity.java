@@ -2,6 +2,7 @@ package com.iamaravind.dhishnareg;
 
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,6 +18,7 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class ScannerActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler{
     Toolbar toolbar;
+    TextView pass;
     private ZXingScannerView zXingScannerView;
     String eidresult;
     @Override
@@ -24,9 +26,10 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scanner);
         Bundle bundle = getIntent().getExtras();
-         eidresult = bundle.getString("eidd");
-        TextView pass = (TextView)findViewById(R.id.eid);
-        pass.setText(eidresult);
+        eidresult = bundle.getString("eidd");
+        pass = (TextView)findViewById(R.id.eid);
+        //pass.setText(eidresult);
+        getEvent(eidresult);
         toolbar = (Toolbar)findViewById(R.id.tolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle("@string/app_name");
@@ -61,5 +64,18 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
     public void onBackPressed()
     {
         backButtonCount++;
+    }
+        public void getEvent(String eid) {
+        DataBaseHelper db = new DataBaseHelper(this);
+        Cursor result = db.getdata(eid);
+        if (result.getCount() == 0) {
+            pass.setText("Not Event with this ID");
+            return;
+        }
+        StringBuffer stringBuffer = new StringBuffer();
+        while (result.moveToNext()){
+            stringBuffer.append(result.getString(0));
+        }
+        pass.setText(stringBuffer.toString());
     }
 }

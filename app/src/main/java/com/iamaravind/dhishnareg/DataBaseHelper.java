@@ -33,10 +33,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertDb(String name)
+    public boolean insertDb(String eid, String name)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+        contentValues.put(COL1,eid);
         contentValues.put(COL2,name);
         long result = db.insert(TABLE_NAME, null, contentValues);
         if (result == -1)
@@ -44,7 +45,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         else
             return true;
     }
-    public Cursor getdata()
+    public Cursor getdata(String eid)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT Ename FROM "+TABLE_NAME+" WHERE ID = "+eid, null);
+        return res;
+    }
+    public Cursor getdataa()
     {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("SELECT * FROM "+TABLE_NAME, null);

@@ -6,6 +6,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import es.dmoral.toasty.Toasty;
@@ -13,7 +14,9 @@ import es.dmoral.toasty.Toasty;
 
 public class LoginActivity extends AppCompatActivity {
 
+    ImageView imageView ;
     EditText name, passwd;
+    Integer clickCountt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +24,17 @@ public class LoginActivity extends AppCompatActivity {
         name = (EditText)findViewById(R.id.unamee);
         passwd = (EditText)findViewById(R.id.password);
         configToasty();
+        imageView = (ImageView)findViewById(R.id.imageView);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                 //Toast.makeText(LoginActivity.this, "You Clicked it", Toast.LENGTH_LONG).show();
+                Intent adminIntent = new Intent(LoginActivity.this, AdminActivity.class);
+                startActivity(adminIntent);
+            }
+        });
+
+
 
     }
     public void onLogin(View view)
