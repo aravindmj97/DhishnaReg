@@ -42,6 +42,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         type = params[0];
         String login_url = "http://u1701374.nettech.firm.in/login.php";
         String checkin_url = "http://u1701374.nettech.firm.in/checkin.php";
+        DataBaseHelper db = new DataBaseHelper(context);
         if (type.equals("login")){
             try {
                 URL url = new URL(login_url);
@@ -180,5 +181,4 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                 setErrorColor(ContextCompat.getColor(context, R.color.errorColor))
                 .apply();
     }
-
 }

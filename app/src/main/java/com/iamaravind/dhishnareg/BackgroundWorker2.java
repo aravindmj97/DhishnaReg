@@ -5,96 +5,103 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
+
+import es.dmoral.toasty.Toasty;
+
+/**
+ * Created by ARAVIND on 01-10-2017.
+ */
 
 public class BackgroundWorker2 extends AsyncTask<String, Void, String> {
+
     Context context;
     AlertDialog alertDialog;
-    String type, eidresult;
-
-     BackgroundWorker2(Context ctx) {
+    String type, eidresult,n;
+    BackgroundWorker2(Context ctx){
         context = ctx;
     }
-
     @Override
     protected String doInBackground(String... params) {
-        eidresult = params[2];
-        String fromqr = params[1];
         type = params[0];
-        String checkin_url = "http://u1701374.nettech.firm.in/checkin.php";
-        if (type.equals("checkin")) {
+        String json_url = "http://u1701374.nettech.firm.in/tojson.php";
+        DataBaseHelper db = new DataBaseHelper(context);
+        if (type.equals("getjson")){
             try {
-                URL url = new URL(checkin_url);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                httpURLConnection.setRequestMethod("POST");
+                URL url = new URL(json_url);
+                HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
+                httpURLConnection.setRequestMethod("GET");
                 httpURLConnection.setDoOutput(true);
                 httpURLConnection.setDoInput((true));
-                OutputStream outputStream = httpURLConnection.getOutputStream();
-                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-                String post_data = URLEncoder.encode("parti_id", "UTF-8") + "=" + URLEncoder.encode(fromqr, "UTF-8") + "&"
-                        + URLEncoder.encode("org_id", "UTF-8") + "=" + URLEncoder.encode(eidresult, "UTF-8");
-                bufferedWriter.write(post_data);
-                bufferedWriter.flush();
-                bufferedWriter.close();
-                outputStream.close();
                 InputStream inputStream = httpURLConnection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
-                String result = "";
-                String line = "";
-                while ((line = bufferedReader.readLine()) != null) {
+                String result ="";
+                String line="";
+                while ((line = bufferedReader.readLine())!=null){
                     result += line;
                 }
                 bufferedReader.close();
                 inputStream.close();
-                return result;
+                //      return result;
+                boolean res = true;
+                JSONArray jsonArray = null;
+                try {
+
+                    jsonArray = new JSONArray(result);
+                    JSONObject jsonObject;
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+
+                        jsonObject = jsonArray.getJSONObject(i);
+
+                        String tempEid = jsonObject.getString("eid");
+
+                        String tempEname = jsonObject.getString("ename");
+
+                        res = db.insertDb(tempEid, tempEname);
+                    }
+                    return String.valueOf(res);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
         }
         return null;
     }
 
     @Override
     protected void onPreExecute() {
-      //  alertDialog = new AlertDialog.Builder(context).create();
-       // alertDialog.setTitle("Checkin Status");
+        //alertDialog = new AlertDialog.Builder(context).create();
+        //alertDialog.setTitle("Login Status");
 
     }
 
     @Override
     protected void onPostExecute(String result) {
-        // alertDialog.setMessage(result);
-        // alertDialog.show();
-        String error = "Wrong Credentials";
-      if (type.equals("checkin")) {
-            if (result.equals("1")) {
-                Intent checkinsucc = new Intent(context,CheckinsuccessActivity.class);
-            //           .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                Bundle bundle = new Bundle();
-                bundle.putString("eidd", eidresult);
-                checkinsucc.putExtras(bundle);
-                context.startActivity(checkinsucc);
-            } else if (result.equals("0")) {
-                Intent checkinfail = new Intent(context, CheckinfailedActivity.class);
-              //          .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                Bundle bundle = new Bundle();
-                bundle.putString("eidd", eidresult);
-                checkinfail.putExtras(bundle);
-                context.startActivity(checkinfail);
-            }
+        if(type.equals("getjson")){
+            configToasty();
+            if(result == "true")
+                Toasty.info(context,"Successfully Fetched JSON Event List Filled", Toast.LENGTH_LONG,true).show();
+            else if (result == "false")
+                Toasty.error(context,"Error while Fetching JSON Contact Dev!!", Toast.LENGTH_LONG,true).show();
         }
     }
 
@@ -102,4 +109,12 @@ public class BackgroundWorker2 extends AsyncTask<String, Void, String> {
     protected void onProgressUpdate(Void... values) {
         super.onProgressUpdate(values);
     }
+
+    public void configToasty()
+    {
+        Toasty.Config.getInstance().
+                setErrorColor(ContextCompat.getColor(context, R.color.errorColor))
+                .apply();
+    }
 }
+

@@ -8,6 +8,8 @@
 
     <EditText
         android:id="@+id/eid"
+        android:textColorHint="@color/colorTint"
+        android:elevation="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -19,6 +21,8 @@
 
     <EditText
         android:id="@+id/ename"
+        android:textColorHint="@color/colorTint"
+        android:elevation="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/eid"
@@ -33,6 +37,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ename"
+        android:background="@drawable/button_custom"
+        android:backgroundTint="@android:color/holo_red_dark"
+        android:elevation="10dp"
+        android:textColor="@color/textColor"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="66dp"
         android:text="Save" />
@@ -41,8 +49,53 @@
         android:id="@+id/load"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/save"
+        android:layout_marginTop="21dp"
+        android:text="Load"
+        android:background="@drawable/button_custom"
+        android:backgroundTint="@android:color/holo_red_dark"
+        android:elevation="10dp"
+        android:textColor="@color/textColor"
         android:layout_below="@+id/save"
-        android:layout_marginTop="41dp"
-        android:text="Load" />
+        android:layout_alignStart="@+id/save" />
+
+    <Button
+        android:id="@+id/getjson"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="getJson"
+        android:layout_marginTop="18dp"
+        android:text="Get Json"
+        android:background="@drawable/button_custom"
+        android:backgroundTint="@android:color/holo_red_dark"
+        android:elevation="10dp"
+        android:textColor="@color/textColor"
+        android:layout_below="@+id/load"
+        android:layout_toStartOf="@+id/load"
+        android:layout_marginEnd="35dp" />
+
+    <Button
+        android:id="@+id/trunc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Empty IT!!!"
+        android:background="@drawable/button_custom"
+        android:backgroundTint="@android:color/holo_red_dark"
+        android:elevation="10dp"
+        android:textColor="@color/textColor"
+        android:layout_alignBaseline="@+id/getjson"
+        android:layout_alignBottom="@+id/getjson"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="24dp" />
+
+    <Button
+        android:id="@+id/deleid"
+        android:layout_width="wrap_content"
+        android:background="@drawable/button_custom"
+        android:backgroundTint="@android:color/holo_red_dark"
+        android:elevation="10dp"
+        android:textColor="@color/textColor"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/load"
+        android:layout_alignTop="@+id/getjson"
+        android:text="Del EID" />
 </RelativeLayout>

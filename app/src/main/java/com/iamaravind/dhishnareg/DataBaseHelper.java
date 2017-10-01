@@ -2,6 +2,7 @@ package com.iamaravind.dhishnareg;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -61,6 +62,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(TABLE_NAME,COL1+" = ?", new String[] {id});
+    }
+    public Integer deleteall()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_NAME, "1", null);
+
     }
     public boolean updateto(String id, String name)
     {
