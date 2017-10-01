@@ -101,7 +101,7 @@ public class BackgroundWorker2 extends AsyncTask<String, Void, String> {
             if(result == "true")
                 Toasty.info(context,"Successfully Fetched JSON Event List Filled", Toast.LENGTH_LONG,true).show();
             else if (result == "false")
-                Toasty.error(context,"Error while Fetching JSON Contact Dev!!", Toast.LENGTH_LONG,true).show();
+                Toasty.error(context,"$$ Who Told You To Tap it Again $$", Toast.LENGTH_LONG,true).show();
         }
     }
 
