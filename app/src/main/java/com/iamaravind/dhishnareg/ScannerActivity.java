@@ -68,6 +68,7 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
     public void onBackPressed()
     {
         backButtonCount++;
+        Toast.makeText(ScannerActivity.this,"Want to exit? Press The Home Button!!", Toast.LENGTH_SHORT).show();
     }
         public void getEvent(String eid) {
         DataBaseHelper db = new DataBaseHelper(this);
