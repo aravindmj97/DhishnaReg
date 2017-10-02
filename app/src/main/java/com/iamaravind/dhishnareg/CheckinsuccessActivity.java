@@ -92,7 +92,7 @@ public class CheckinsuccessActivity extends AppCompatActivity {
                 type = params[0];
 
                 DataBaseHelper db = new DataBaseHelper(context);
-                if (type.equals("getdetail")){
+                if (type.equals("getdetails")){
                     try {
                         URL url = new URL(name_url);
                         HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
@@ -133,7 +133,7 @@ public class CheckinsuccessActivity extends AppCompatActivity {
             }
             @Override
             protected void onPostExecute(String result) {
-                if (type.equals("getdetail"))
+                if (type.equals("getdetails"))
                 {
                     String[] split = result.split(",");
                     getNametext = (TextView)findViewById(R.id.chs_name);
