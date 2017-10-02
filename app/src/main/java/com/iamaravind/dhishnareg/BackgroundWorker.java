@@ -27,7 +27,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
     Context context;
     AlertDialog alertDialog;
-    String type, eidresult,n;
+    String type, eidresult,n, fromqr;
     BackgroundWorker(Context ctx){
         context = ctx;
     }
@@ -36,7 +36,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         String name = params[1];
         String password = params[2];
          eidresult = params[2];
-        String fromqr = params[1];
+        fromqr = params[1];
         String event = params[1];
          n = params[2];
         type = params[0];
@@ -142,6 +142,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                         .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 Bundle bundle = new Bundle();
                 bundle.putString("eidd", eidresult);
+                bundle.putString("pid", fromqr);
                 checkin_succ.putExtras(bundle);
                 context.startActivity(checkin_succ);
             }
