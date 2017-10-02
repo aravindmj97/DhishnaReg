@@ -88,7 +88,7 @@ public class CheckinsuccessActivity extends AppCompatActivity {
             }
             @Override
             protected String doInBackground(String... params) {
-                String name_url = "http://u1701374.nettech.firm.in/getname.php";
+                String name_url = "http://u1701374.nettech.firm.in/successdetails.php";
                 type = params[0];
 
                 DataBaseHelper db = new DataBaseHelper(context);

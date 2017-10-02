@@ -41,20 +41,18 @@
         android:id="@+id/chs_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="22sp"
         android:layout_centerVertical="true"
-        android:layout_toEndOf="@+id/textView2" />
+        android:layout_toEndOf="@+id/textView2"
+        android:textSize="22sp" />
 
     <TextView
         android:id="@+id/chs_college"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="22sp"
-        android:layout_below="@+id/chs_name"
         android:layout_alignStart="@+id/chs_name"
-        android:layout_marginTop="71dp" />
+        android:layout_below="@+id/chs_name"
+        android:layout_marginTop="71dp"
+        android:textSize="22sp" />
 
     <TextView
         android:id="@+id/textView"

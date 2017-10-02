@@ -151,6 +151,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                         .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 Bundle bundle = new Bundle();
                 bundle.putString("eidd", eidresult);
+                bundle.putString("pid", fromqr);
                 checkin_fail.putExtras(bundle);
                 context.startActivity(checkin_fail);
             }
