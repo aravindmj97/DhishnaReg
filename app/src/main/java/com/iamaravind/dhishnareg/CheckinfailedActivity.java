@@ -83,7 +83,7 @@ public class CheckinfailedActivity extends AppCompatActivity {
         }
         @Override
         protected String doInBackground(String... params) {
-            String name_url = "http://u1701374.nettech.firm.in/faileddetails.php";
+            String name_url = "http://mesignite.com/faileddetails.php";
             type = params[0];
 
             DataBaseHelper db = new DataBaseHelper(context);

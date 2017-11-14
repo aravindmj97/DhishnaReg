@@ -1,9 +1,11 @@
 package com.iamaravind.dhishnareg;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -23,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        ActivityCompat.requestPermissions(LoginActivity.this, new  String[]{Manifest.permission.CAMERA}, 123);
         name = (EditText)findViewById(R.id.unamee);
         passwd = (EditText)findViewById(R.id.password);
         configToasty();
@@ -34,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(adminIntent);
             }
         }); */
+
 
         SharedPreferences prefs = this.getSharedPreferences(
                 "com.iamaravind.dhishnareg", Context.MODE_PRIVATE);

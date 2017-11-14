@@ -37,6 +37,7 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
         toolbar = (Toolbar)findViewById(R.id.tolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle("@string/app_name");
+        toolbar.setSubtitle("(Ignite)");
     }
 
     public void scan(View view){

@@ -37,7 +37,7 @@ public class BackgroundWorker2 extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... params) {
         type = params[0];
-        String json_url = "http://u1701374.nettech.firm.in/tojson.php";
+        String json_url = "http://mesignite.com/tojson.php";
         DataBaseHelper db = new DataBaseHelper(context);
         if (type.equals("getjson")){
             try {

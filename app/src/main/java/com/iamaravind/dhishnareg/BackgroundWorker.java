@@ -40,8 +40,8 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         String event = params[1];
          n = params[2];
         type = params[0];
-        String login_url = "http://u1701374.nettech.firm.in/login.php";
-        String checkin_url = "http://u1701374.nettech.firm.in/checkin.php";
+        String login_url = "http://mesignite.com/login.php";
+        String checkin_url = "http://mesignite.com/checkin.php";
         DataBaseHelper db = new DataBaseHelper(context);
         if (type.equals("login")){
             try {
